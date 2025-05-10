@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Glacial Abrasions</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+	const map = L.map('map').setView([42.29925, -73.005210], 16);
+
+var USGS_USImageryTopo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
+	maxZoom: 20,
+	attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+	}).addTo(map);
+
+	const LeafIcon = L.Icon.extend({
+		options: {
+			iconSize:     [20, 20],
+			iconAnchor:   [10, 10],
+			popupAnchor:  [-3, -40]
+		}
+	});
+
+	const bellIcon = new LeafIcon({iconUrl: 'bell.png'});
+	const kamoneIcon = new LeafIcon({iconUrl: 'kam1.png'});
+	const kamtwoIcon = new LeafIcon({iconUrl: 'kam2.png'});
+
+	const mBell = L.marker([42.29737852, -73.00467657], {icon: bellIcon}).bindPopup('The Bell').addTo(map);
+	const mRed = L.marker([42.29657593, -73.00517118], {icon: kamoneIcon}).bindPopup('Kool Aid Man One').addTo(map);
+	const mOrange = L.marker([42.29686709, -73.00480220], {icon: kamtwoIcon}).bindPopup('Kool Aid Man Two').addTo(map);
+
+</script>
+
+
+
+</body>
+</html>
